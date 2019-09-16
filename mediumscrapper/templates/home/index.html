@@ -1,7 +1,8 @@
-<center>
-    <h2>Medium Scrapper</h2>
-    <br/>
-    <input type="text" placeholder="Paste medium url here" name='link' />
-    <br/>
-    <input type="button" value = "Make the audio file" />
-</center>
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit">
+</form>
+<h2>
+{{ text }}
+</h2>

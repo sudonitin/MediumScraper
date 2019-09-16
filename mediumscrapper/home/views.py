@@ -26,14 +26,14 @@ def get_link(request):
             for i in soup.select('article'):
                 content += i.getText()
 
-            val = content
+            val = "'" + content + "'"
             form = NameForm()
             # return redirect('home:home')
 
     # if a GET (or any other method) we'll create a blank form
     else:
         form = NameForm()
-        val = 'first time'
+        val = "'Please Enter a link'"
         print(str(val))
 
     return render(request, 'home/index.html', {'form': form, 'text':val})

@@ -1,8 +1,24 @@
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" />
 </form>
+<br/>
+<input type="button" onclick = "speak({{ text }})"; value="Speak" />
+<br/>
 <h2>
 {{ text }}
 </h2>
+
+<script type="text/javascript"> 
+   {% comment %} var a = "{{ text }}";
+   console.log(a); {% endcomment %}
+
+    function speak (message) {
+        var msg = new SpeechSynthesisUtterance(message);
+        var voices = window.speechSynthesis.getVoices();
+        msg.voice = voices[0];
+        window.speechSynthesis.speak(msg);
+}    
+
+</script>

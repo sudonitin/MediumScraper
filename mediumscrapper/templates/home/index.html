@@ -4,7 +4,7 @@
     <input type="submit" value="Submit" onclick="cancel();" />
 </form>
 <br/>
-<input type="button" onclick = "speak({{ text }})"; value="Speak" /> 
+<input type="button" onclick = "speak({{ text }})"; value="Speak" id="speak"/> 
 <input type="button" onclick = "pause()"; value="Pause" id="pause"/>
 <br/>
 <h2>
@@ -16,10 +16,21 @@
    console.log(a);
     var synth = 0;
     function speak (message) {
-        var msg = new SpeechSynthesisUtterance(message);
-        var voices = window.speechSynthesis.getVoices();
-        msg.voice = voices[0];
-        window.speechSynthesis.speak(msg);
+        if(!window.speechSynthesis.speaking){
+            document.getElementById("speak").value = "Restart";
+            var msg = new SpeechSynthesisUtterance(message);
+            var voices = window.speechSynthesis.getVoices();
+            msg.voice = voices[0];
+            window.speechSynthesis.speak(msg);
+        }
+        else{
+            window.speechSynthesis.cancel();
+            document.getElementById("speak").value = "Restart";
+            var msg = new SpeechSynthesisUtterance(message);
+            var voices = window.speechSynthesis.getVoices();
+            msg.voice = voices[0];
+            window.speechSynthesis.speak(msg);
+        }
 
 }    
     function pause(){
@@ -31,10 +42,10 @@
             document.getElementById("pause").value = "Pause";
             window.speechSynthesis.resume();
         }
-
     }
 
     function cancel(){
         window.speechSynthesis.cancel();
+        document.getElementById("speak").value = "Speak";
     }
 </script>

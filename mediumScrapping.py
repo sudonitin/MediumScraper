@@ -3,13 +3,13 @@ import bs4
 import warnings
 warnings.simplefilter('ignore') 
 
-res = req.get('Article Link Here')
+res = req.get('https://medium.com/datadriveninvestor/7-things-the-knowledge-of-financial-education-will-teach-you-eab971fa8406')
 soup = bs4.BeautifulSoup(res.text, 'lxml')
 content = ''
 for i in soup.select('article'):
     content += i.getText()
     #print(i.getText())
-#print(content)
+print(content)
 
 ###Audio file generating###
 from gtts import gTTS
@@ -22,6 +22,7 @@ use speechsynthesis of js to implement voice in web:
     https://responsivevoice.org/,
     https://developer.mozilla.org/en-US/docs/Web/API/SpeechSynthesis
 this code should be called on button click
+Stop the web synthesis when new link is added****
 '''
 
 '''

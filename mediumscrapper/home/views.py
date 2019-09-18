@@ -25,7 +25,7 @@ def get_link(request):
             content = ''
             for i in soup.select('article'):
                 content += i.getText()
-
+            print(content)
             val = "'" + content + "'"
             form = NameForm()
             # return redirect('home:home')

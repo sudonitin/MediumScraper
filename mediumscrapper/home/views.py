@@ -19,13 +19,14 @@ def get_link(request):
             # ...
             # redirect to a new URL:
             val = form.cleaned_data['urlink']
-            print(str(val))
+            # print(str(val))
             res = req.get(val)
-            soup = bs4.BeautifulSoup(res.text, 'lxml')
+            # print(res.text)
+            soup = bs4.BeautifulSoup(res.text)
             content = ''
-            for i in soup.select('article'):
+            for i in soup.find('article'):
                 content += i.getText()
-            print(content)
+            # print(content)
             val = "'" + content + "'"
             form = NameForm()
             # return redirect('home:home')
@@ -34,6 +35,6 @@ def get_link(request):
     else:
         form = NameForm()
         val = "'Please Enter a link'"
-        print(str(val))
+        # print(str(val))
 
     return render(request, 'home/index.html', {'form': form, 'text':val})

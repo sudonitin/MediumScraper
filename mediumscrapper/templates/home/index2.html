@@ -1,22 +1,28 @@
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Submit" onclick="cancel();" />
-</form>
-<br/>
-<span id="msg"></span><br>
-<div class="option">
-    <label for="voice">Voice</label>
-    <select name="voice" id="voice"></select>
+<html>
+    <head>
+       
+    </head>
+    <body>  
+        <div id="page-wrapper">
+  <h1>Web Speech Synthesis Demo</h1>
+  
+  <p id="msg"></p>
+
+  <input type="text" name="speech-msg" id="speech-msg" x-webkit-speech>
+
+	<div class="option">
+		<label for="voice">Voice</label>
+		<select name="voice" id="voice"></select>
+	</div>
+	
+
+	<button id="speak">Speak</button>
+
 </div>
-<br/>
-<input type="button" value="Speak" id="speak"/> 
-<input type="button" onclick = "pause()"; value="Pause" id="pause"/>
-<br/>
-<input type='text'  id="speech-msg" value="{{ text }}" />
-
-
-<script type="text/javascript"> 
+ <script type="text/javascript">
+            /*
+ * Check for browser support
+ */
 var supportMsg = document.getElementById('msg');
 
 if ('speechSynthesis' in window) {
@@ -33,7 +39,6 @@ var button = document.getElementById('speak');
 // Get the text input element.
 var speechMsgInput = document.getElementById('speech-msg');
 
-var article = speechMsgInput.value;
 // Get the voice select element.
 var voiceSelect = document.getElementById('voice');
 
@@ -75,52 +80,26 @@ function speak(text) {
   
   // Set the text.
 	msg.text = text;
-  alert(msg.text);
-    // Set the attributes.
+  
+  // Set the attributes.
   // If a voice has been selected, find the voice and set the
   // utterance instance's voice attribute.
 	if (voiceSelect.value) {
 		msg.voice = speechSynthesis.getVoices().filter(function(voice) { return voice.name == voiceSelect.value; })[0];
 	}
-  else{
-    alert('voice not loaded');
-  }
+  
   // Queue this utterance.
-  if(!window.speechSynthesis.speaking){
-      document.getElementById("speak").value = "Restart";
-    	window.speechSynthesis.speak(msg);
-  }
-  else{
-      window.speechSynthesis.cancel();
-      document.getElementById("speak").value = "Restart";
-      window.speechSynthesis.speak(msg);
-  }
+	window.speechSynthesis.speak(msg);
 }
+
+
 // Set up an event listener for when the 'speak' button is clicked.
 button.addEventListener('click', function(e) {
-  article = article.toLowerCase();
-	if (article.length > 0) {
-		speak(article);
+	if (speechMsgInput.value.length > 0) {
+		speak(speechMsgInput.value);
 	}
-  else{
-    speak("Please enter a link");
-  }
 });
 
-function pause(){
-    if(!window.speechSynthesis.paused){
-        document.getElementById("pause").value = "Resume";
-        window.speechSynthesis.pause();
-    }
-    else{
-        document.getElementById("pause").value = "Pause";
-        window.speechSynthesis.resume();
-    }
-}
-
-function cancel(){
-    window.speechSynthesis.cancel();
-    document.getElementById("speak").value = "Speak";
-}
-
-</script>
+        </script>
+    </body>
+</html>

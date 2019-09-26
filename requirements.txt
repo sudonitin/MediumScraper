@@ -1,0 +1,7 @@
+SpeechRecognition==3.6.3
+
+
+gTTS==2.0.1
+
+beautifulsoup4
+Django

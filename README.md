@@ -30,3 +30,4 @@ python manage.py runserver
 
 UI:
 
+<img src="https://github.com/globefire/ArticleScraping/blob/master/myscrapy.png" />

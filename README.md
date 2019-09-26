@@ -28,6 +28,8 @@ cd mediumscraper
 python manage.py runserver
 ```
 
-UI:
+## UI
 
 <img src="https://github.com/globefire/ArticleScraping/blob/master/myscrapy.png" />
+
+## Demo

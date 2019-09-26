@@ -27,3 +27,6 @@ To launch the web interface run the following commands
 cd mediumscraper
 python manage.py runserver
 ```
+
+UI:
+

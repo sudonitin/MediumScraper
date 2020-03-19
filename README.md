@@ -1,4 +1,4 @@
-# ArticleScraping
+# Medium Scraper
 
 **NOTE: This project is developed for educational purpose only and does not try to imitate any legit application.**
 
